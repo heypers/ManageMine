@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "heypers",
+  "version": "${version}",
+  "name": "HeypersMod",
+  "description": "Exclusive",
+  "authors": ["mr_fortuna"],
+  "contact": {"email":  "heypers.team@gmail.com"},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/heypers/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "org.heypers.heypers.Heypers"
+    ]
+  },
+  "mixins": [
+    "heypers.mixins.json",
+    {
+      "config": "heypers.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

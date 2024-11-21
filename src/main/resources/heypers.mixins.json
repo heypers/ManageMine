@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.heypers.heypers.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "LoaderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
