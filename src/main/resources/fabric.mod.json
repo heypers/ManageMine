@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "id": "heypers",
+  "id": "mngmine",
   "version": "${version}",
-  "name": "HeypersMod",
-  "description": "Exclusive",
+  "name": "ManageMine",
+  "description": "Effortless Server Management for Minecraft",
   "authors": ["mr_fortuna"],
   "contact": {"email":  "heypers.team@gmail.com"},
-  "license": "All-Rights-Reserved",
+  "license": "/LICENSE.txt",
   "icon": "assets/heypers/icon.png",
   "environment": "server",
   "entrypoints": {
     "main": [
-      "org.heypers.heypers.Heypers"
+      "org.heypers.mngmine.Mngmine"
     ]
   },
   "mixins": [

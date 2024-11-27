@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "org.heypers.heypers.mixin",
+  "package": "org.heypers.mngmine.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "LoaderMixin"

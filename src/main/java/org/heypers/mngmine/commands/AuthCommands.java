@@ -1,4 +1,4 @@
-package org.heypers.heypers.commands;
+package org.heypers.mngmine.commands;
 
 import static net.minecraft.server.command.CommandManager.*;
 
@@ -9,7 +9,7 @@ import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import org.heypers.heypers.data.PlayerAuthManager;
+import org.heypers.mngmine.data.PlayerAuthManager;
 
 public class AuthCommands {
 
