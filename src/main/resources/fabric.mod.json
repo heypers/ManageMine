@@ -6,7 +6,7 @@
   "description": "Effortless Server Management for Minecraft",
   "authors": ["mr_fortuna"],
   "contact": {"email":  "heypers.team@gmail.com"},
-  "license": "/LICENSE.txt",
+  "license": "HeypersLicense",
   "icon": "assets/heypers/icon.png",
   "environment": "server",
   "entrypoints": {
