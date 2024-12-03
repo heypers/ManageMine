@@ -24,12 +24,8 @@ import org.heypers.mngmine.webhooks.DiscordWebhook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-
 
 public class Mngmine implements ModInitializer {
     public static final String MOD_ID = "mngmine";
@@ -51,31 +47,44 @@ public class Mngmine implements ModInitializer {
 
     private void loadConfig() {
         Properties properties = new Properties();
-        try (InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties")) {
-            if (input == null) {
-                LOGGER.warn("Извините, не удалось найти config.properties. Генерация нового файла конфигурации с настройками по умолчанию.");
-                generateDefaultConfig(properties);
-                return;
-            }
+        File configFile = new File("config/mngmine/config.properties");
 
+        if (!configFile.exists()) {
+            LOGGER.warn("Конфигурационный файл отсутствует, создается новый с настройками по умолчанию.");
+            generateDefaultConfig(properties);
+            return;
+        }
+
+        try (InputStream input = new FileInputStream(configFile)) {
             properties.load(input);
             startWebhookUrl = properties.getProperty("START_WEBHOOK_URL");
             adminWebhookUrl = properties.getProperty("ADMIN_WEBHOOK_URL");
 
-            LOGGER.info("Конфигурация загружена: START_WEBHOOK_URL={}, ADMIN_WEBHOOK_URL={}", startWebhookUrl, adminWebhookUrl);
+            LOGGER.info("Конфигурация загружена");
         } catch (IOException ex) {
             LOGGER.error("Ошибка при загрузке конфигурации", ex);
         }
     }
 
+
     private void generateDefaultConfig(Properties properties) {
         properties.setProperty("START_WEBHOOK_URL", "http://example.com/start");
         properties.setProperty("ADMIN_WEBHOOK_URL", "http://example.com/admin");
 
-        String configFilePath = "config.properties";
-        try (OutputStream output = new FileOutputStream(configFilePath)) {
-            properties.store(output, "Default configuration file");
-            LOGGER.info("Файл конфигурации создан: {}", configFilePath);
+        File configDir = new File("config/mngmine");
+        if (!configDir.exists()) {
+            if (configDir.mkdirs()) {
+                LOGGER.info("Директория конфигурации создана: {}", configDir.getPath());
+            } else {
+                LOGGER.error("Не удалось создать директорию конфигурации.");
+                return;
+            }
+        }
+
+        File configFile = new File(configDir, "config.properties");
+        try (FileWriter writer = new FileWriter(configFile)) {
+            properties.store(writer, "Mngmine Configuration File");
+            LOGGER.info("Файл конфигурации создан: {}", configFile.getPath());
         } catch (IOException ex) {
             LOGGER.error("Ошибка при создании файла конфигурации", ex);
         }

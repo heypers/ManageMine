@@ -51,7 +51,7 @@ public class DiscordWebhook {
             }
 
             int responseCode = connection.getResponseCode();
-            if (responseCode != HttpURLConnection.HTTP_OK) {
+            if (responseCode != HttpURLConnection.HTTP_NO_CONTENT) {
                 log.error("Ошибка отправки сообщения в Discord: код ответа {}", responseCode);
             }
         } catch (Exception e) {
