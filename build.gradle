@@ -41,6 +41,7 @@ dependencies {
     modImplementation "org.slf4j:slf4j-api:1.7.32"
     modImplementation "org.slf4j:slf4j-simple:1.7.32"
     modImplementation "org.mindrot:jbcrypt:0.4"
+    implementation 'org.mindrot:jbcrypt:0.4'
 }
 
 processResources {

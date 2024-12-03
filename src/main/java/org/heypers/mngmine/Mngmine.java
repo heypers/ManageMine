@@ -19,6 +19,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import org.heypers.mngmine.commands.AuthCommands;
 import org.heypers.mngmine.commands.ServerStatusCommands;
+import org.heypers.mngmine.handlers.PlayerAuthHandler;
 import org.heypers.mngmine.webhooks.DiscordWebhook;
 
 import org.slf4j.Logger;
@@ -37,6 +38,7 @@ public class Mngmine implements ModInitializer {
     @Override
     public void onInitialize() {
         loadConfig();
+        PlayerAuthHandler.registerHandlers();
 
         CommandRegistrationCallback.EVENT.register(AuthCommands::registerCommands);
         CommandRegistrationCallback.EVENT.register(ServerStatusCommands::registerCommands);

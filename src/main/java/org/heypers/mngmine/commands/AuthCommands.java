@@ -25,6 +25,9 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import org.heypers.mngmine.data.PlayerAuthManager;
+import org.heypers.mngmine.handlers.PlayerAuthHandler;
+
+import java.util.UUID;
 
 public class AuthCommands {
 
@@ -58,20 +61,17 @@ public class AuthCommands {
 
     private static int loginPlayer(CommandContext<ServerCommandSource> context, String password) {
         ServerPlayerEntity player = context.getSource().getPlayer();
+        UUID uuid = player.getUuid();
 
-        if (player == null) {
-            context.getSource().sendFeedback(() -> Text.literal("Команда недоступна для консоли."), false);
-            return 0;
-        }
-
-        boolean loggedIn = PlayerAuthManager.loginPlayer(player.getUuid(), password);
-        if (loggedIn) {
+        if (PlayerAuthManager.loginPlayer(uuid, password) || PlayerAuthManager.isSessionActive(uuid)) {
+            PlayerAuthHandler.authorizePlayer(uuid);
+            PlayerAuthManager.startSession(uuid);
             context.getSource().sendFeedback(() -> Text.literal("Вы успешно вошли в систему!"), false);
-        } else {
-            context.getSource().sendFeedback(() -> Text.literal("Неправильный пароль или вы не зарегистрированы."), false);
+            return 1;
         }
 
-        return 1;
+        context.getSource().sendFeedback(() -> Text.literal("Неправильный пароль или вы не зарегистрированы."), false);
+        return 0;
     }
 
 }

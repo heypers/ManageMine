@@ -22,9 +22,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class PlayerAuthManager {
+    private static final HashMap<UUID, Long> sessionMap = new HashMap<>();
+    private static final long SESSION_DURATION_MS = 30 * 60 * 1000; // 30 минут
 
+    public static boolean isSessionActive(UUID uuid) {
+        return sessionMap.containsKey(uuid) && System.currentTimeMillis() - sessionMap.get(uuid) < SESSION_DURATION_MS;
+    }
+
+    public static void startSession(UUID uuid) {
+        sessionMap.put(uuid, System.currentTimeMillis());
+    }
+
+    public static void endSession(UUID uuid) {
+        sessionMap.remove(uuid);
+    }
     static {
         DatabaseManager.initializeDatabase();
     }
