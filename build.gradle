@@ -37,7 +37,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "com.google.code.gson:gson:2.8.9"
+    modImplementation "com.google.code.gson:gson:2.11.0"
     modImplementation "org.slf4j:slf4j-api:2.0.16"
     modImplementation "org.slf4j:slf4j-simple:2.0.16"
     modImplementation "org.mindrot:jbcrypt:0.4"
