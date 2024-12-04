@@ -39,7 +39,7 @@ dependencies {
 
     modImplementation "com.google.code.gson:gson:2.8.9"
     modImplementation "org.slf4j:slf4j-api:2.0.16"
-    modImplementation "org.slf4j:slf4j-simple:1.7.32"
+    modImplementation "org.slf4j:slf4j-simple:2.0.16"
     modImplementation "org.mindrot:jbcrypt:0.4"
     implementation 'org.mindrot:jbcrypt:0.4'
 }
